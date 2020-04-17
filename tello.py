@@ -8,7 +8,7 @@ questions={
     "battery?":"80",
     "time?":"12",
     "wifi?":"10",
-    "sdk":"2.0",
+    "sdk?":"2.0",
     "sn?":"1234"
 }
 
@@ -40,7 +40,10 @@ def streamoff():
     os.system('screen -X -S tellovideoscreen kill')
 
 try:
-    print("started tello simulator...")
+    print("Tello simulator is running now!\n")
+    print("Your PC is now behaving like you are connected to a tello hosted wifi.")
+    print("Communicate with your virtual tello like it is described in the tello sdk 2.0")
+
     while(True):
 
         bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
@@ -48,9 +51,9 @@ try:
         messageoriginal = bytesAddressPair[0].decode("utf-8")
         message = messageoriginal.split(" ")[0]
         address = bytesAddressPair[1]
-        response = "";
+        response = ""
         if (canreceivecommands):
-            response ="error";
+            response ="error"
 
         if ("command" == message):
             response = "ok"
@@ -81,5 +84,6 @@ try:
 except KeyboardInterrupt:
     streamoff()
     # Removing entry
+    print("Removing redirect from 192.168.10.1 to localhost...")
     os.system("sudo iptables -t nat -D OUTPUT -p all -d 192.168.10.1 -j DNAT --to-destination 127.0.0.1")
 
