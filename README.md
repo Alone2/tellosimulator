@@ -1,10 +1,10 @@
 # tellosimulator
 
-A few bash scripts to "simulate" a tello drone.
+A python script to "simulate" a tello drone.
 
-Currently there is only a video stream / listener for commands.
+Requirements: ffmpeg, screen, python3, iptables
 
-Requirements: ffmpeg, netcat (BSD Version), screen
+To start run tello.py
 
-To start run start.sh
+Exit using ctrl+c
 
